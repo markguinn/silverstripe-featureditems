@@ -1,0 +1,18 @@
+{
+	"name": "markguinn/silverstripe-featureditems",
+	"description": "Very simple way to add a slideshow or other set of featured images/links to a page. Includes easy markup for Foundation's Orbit component.",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe", "slideshow", "featured images", "foundation", "orbit"]
+	"license": "MIT",
+	"authors": [{
+		"name": "Mark Guinn",
+		"email": "mark@adaircreative.com",
+		"homepage": "http://github.com/markguinn"
+	}],
+	"extra": {
+		"installer-name": "featureditems"
+	},
+	"require": {
+		"silverstripe/framework": "~3.1",
+	}
+}

@@ -1,0 +1,6 @@
+---
+Name: featureditemscms
+---
+LeftAndMain:
+  extra_requirements_javascript:
+    - featureditems/javascript/FeaturedItemsCMS.js
