@@ -4,7 +4,7 @@
 		<ul data-orbit>
 			<% loop $FeaturedItems %>
 				<li>
-					<a href="$Link" class="featured-item-$LinkType" <% if $LinkType == 'video' %>data-reveal-id="featured-item-video-$ID"<% end_if %>>
+					<a href="$Link" class="featured-item-$LinkType" <% if $LinkType == 'video' %>data-reveal-id="featured-item-video-$ID"<% end_if %> title="{$Title}">
 						$Image
 					</a>
 				</li>
