@@ -12,6 +12,7 @@
 class FeaturedItem extends DataObject
 {
 	private static $db = array(
+		'Title'          => 'Varchar(255)',
 		'LinkType'      => "Enum('internal,external,video','internal')",
 		'ExternalLink'  => 'Varchar(255)',
 		'Sort'          => 'Int',
