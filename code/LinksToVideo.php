@@ -56,20 +56,35 @@ HTML
 
 
 	/**
+	 * @param int $width [optional]
+	 * @param int $height [optional]
 	 * @return string
 	 */
-	public function getVideoEmbedCode() {
+	public function getVideoEmbedCode($width=0, $height=0) {
 		if ($id = $this->owner->YouTubeID) {
-			return '<div class="flex-video"><iframe width="420" height="315" src="http://www.youtube.com/embed/' . $id . '" frameborder="0" allowfullscreen></iframe></div>';
+			$width = $width > 0 ? $width : 420;
+			$height = $height > 0 ? $height : round(($width / 420) * 315);
+			return '<div class="flex-video"><iframe width="' . $width . '" height="' . $height . '" src="http://www.youtube.com/embed/' . $id . '" frameborder="0" allowfullscreen></iframe></div>';
 		} elseif ($id = $this->owner->VimeoID) {
-			return '<div class="flex-video widescreen vimeo"><iframe src="http://player.vimeo.com/video/' . $id . '?title=0&amp;byline=0&amp;portrait=0" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>';
+			$width = $width > 0 ? $width : 400;
+			$height = $height > 0 ? $height : round(($width / 400) * 225);
+			return '<div class="flex-video widescreen vimeo"><iframe src="http://player.vimeo.com/video/' . $id . '?title=0&amp;byline=0&amp;portrait=0" width="' . $width . '" height="' . $height . '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>';
 		} else {
 			return '<div class="unknown-video"><a href="' . $this->owner->URL . '" target="_blank">View Video</a></div>';
 		}
 	}
 
-
 	/**
+	 * @param int $width [optional]
+	 * @param int $height [optional]
+	 * @return string
+	 */
+	public function VideoEmbedCode($width=0, $height=0) {
+		return $this->getVideoEmbedCode($width, $height);
+	}
+
+
+		/**
 	 * @return string
 	 */
 	public function getVideoType() {
