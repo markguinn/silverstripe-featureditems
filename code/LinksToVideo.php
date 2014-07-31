@@ -84,7 +84,6 @@ HTML
 	 */
 	protected function extractYouTubeID() {
 		if (preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $this->owner->VideoURL, $matches)) {
-			Debug::dump($matches);
 			return $matches[0];
 		} else {
 			return '';
