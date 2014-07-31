@@ -80,6 +80,14 @@ HTML
 
 
 	/**
+	 * @return bool
+	 */
+	public function hasVideo() {
+		return !empty($this->owner->YouTubeID) || !empty($this->owner->VimeoID);
+	}
+
+
+	/**
 	 * @return string
 	 */
 	protected function extractYouTubeID() {
