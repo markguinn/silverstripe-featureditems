@@ -156,9 +156,17 @@ HTML
 	 */
 	public function onBeforeWrite() {
 		if ($this->owner->isChanged('VideoURL')) {
-			$this->owner->YouTubeID     = $this->extractYouTubeID();
-			$this->owner->VimeoID       = $this->extractVimeoID();
-			$this->owner->VideoThumbURL = $this->retrieveThumbnailURL();
+			$this->processVideoURL();
 		}
+	}
+
+
+	/**
+	 * Extract the youtube/vimeo id if possible
+	 */
+	public function processVideoURL() {
+		$this->owner->YouTubeID     = $this->extractYouTubeID();
+		$this->owner->VimeoID       = $this->extractVimeoID();
+		$this->owner->VideoThumbURL = $this->retrieveThumbnailURL();
 	}
 }
