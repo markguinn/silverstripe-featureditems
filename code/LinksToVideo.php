@@ -64,7 +64,7 @@ HTML
 		if ($id = $this->owner->YouTubeID) {
 			$width = $width > 0 ? $width : 420;
 			$height = $height > 0 ? $height : round(($width / 420) * 315);
-			return '<div class="flex-video"><iframe width="' . $width . '" height="' . $height . '" src="http://www.youtube.com/embed/' . $id . '" frameborder="0" allowfullscreen></iframe></div>';
+			return '<div class="flex-video"><iframe width="' . $width . '" height="' . $height . '" src="http://www.youtube.com/embed/' . $id . '?wmode=transparent" frameborder="0" allowfullscreen></iframe></div>';
 		} elseif ($id = $this->owner->VimeoID) {
 			$width = $width > 0 ? $width : 400;
 			$height = $height > 0 ? $height : round(($width / 400) * 225);
