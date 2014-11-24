@@ -131,9 +131,9 @@ HTML
 	 */
 	protected function retrieveThumbnailURL() {
 		if ($this->owner->YouTubeID) {
-			return 'http://img.youtube.com/vi/' . $this->owner->YouTubeID . '/1.jpg';
+			return '//img.youtube.com/vi/' . $this->owner->YouTubeID . '/1.jpg';
 		} elseif ($this->owner->VimeoID) {
-			$url        = 'http://vimeo.com/api/v2/video/' . $this->owner->VimeoID . '.php';
+			$url        = '//vimeo.com/api/v2/video/' . $this->owner->VimeoID . '.php';
 			$contents   = @file_get_contents($url);
 			$thumb      = @unserialize(trim($contents));
 			if (is_array($thumb)) return $thumb[0]['thumbnail_small'];
