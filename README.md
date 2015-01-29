@@ -23,6 +23,27 @@ Features
 - Could easily be adapted to work with any slideshow component.
 
 
+Usage
+-----
+You need to add the “HasFeaturedItems” extension to any page type that should have them. You can do this via yaml config like so (this would go in a .yml file in mysite/_config):
+
+```
+Page:
+  extensions:
+    - HasFeaturedItems
+```
+
+(replace Page with HomePage or XYZPage or whatever if you don’t want it on all types of pages)
+
+Then in the page template just add:
+
+```
+<% include FeaturedItems %>
+```
+
+If you’re using Zurb Foundation you’re good to go. If not you may need to change up the markup in that FeaturedItems template.
+
+
 Developer(s)
 ------------
 - Mark Guinn <mark@adaircreative.com>
