@@ -21,6 +21,19 @@ class LinksToVideo extends DataExtension
 		'VimeoID'       => 'Varchar(255)',
 	);
 
+	private static $youtube_params = array(
+		'wmode'          => 'transparent',
+		'rel'            => '0',
+		'showinfo'       => '0',
+		'modestbranding' => '0',
+	);
+
+	private static $vimeo_params = array(
+		'title'    => '0',
+		'byline'   => '0',
+		'portrait' => '0',
+	);
+
 
 	/**
 	 * @return array
@@ -64,15 +77,36 @@ HTML
 		if ($id = $this->owner->YouTubeID) {
 			$width = $width > 0 ? $width : 420;
 			$height = $height > 0 ? $height : round(($width / 420) * 315);
-			return '<div class="flex-video"><iframe width="' . $width . '" height="' . $height . '" src="//www.youtube.com/embed/' . $id . '?wmode=transparent" frameborder="0" allowfullscreen></iframe></div>';
+			$params = Config::inst()->get('LinksToVideo', 'youtube_params');
+			return '<div class="flex-video"><iframe width="' . $width . '" height="' . $height
+				. '" src="//www.youtube.com/embed/' . $id . '?' . $this->getEncodedParams($params)
+				. '" frameborder="0" allowfullscreen></iframe></div>';
 		} elseif ($id = $this->owner->VimeoID) {
 			$width = $width > 0 ? $width : 400;
 			$height = $height > 0 ? $height : round(($width / 400) * 225);
-			return '<div class="flex-video widescreen vimeo"><iframe src="//player.vimeo.com/video/' . $id . '?title=0&amp;byline=0&amp;portrait=0" width="' . $width . '" height="' . $height . '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>';
+			$params = Config::inst()->get('LinksToVideo', 'vimeo_params');
+			return '<div class="flex-video widescreen vimeo"><iframe src="//player.vimeo.com/video/' . $id
+				. '?' . $this->getEncodedParams($params) . '" width="' . $width . '" height="' . $height
+				. '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>';
 		} else {
 			return '<div class="unknown-video"><a href="' . $this->owner->URL . '" target="_blank">View Video</a></div>';
 		}
 	}
+
+
+	/**
+	 * @param array $params
+	 * @return string
+	 */
+	protected function getEncodedParams($params) {
+		$out = array();
+		foreach ($params as $k => $v) {
+			$out[] = urlencode($k) . '=' . urlencode($v);
+		}
+
+		return implode('&amp;', $out);
+	}
+
 
 	/**
 	 * @param int $width [optional]
