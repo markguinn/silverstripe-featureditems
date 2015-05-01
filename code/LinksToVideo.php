@@ -140,9 +140,19 @@ HTML
 	 * @return string
 	 */
 	protected function extractYouTubeID() {
-		if (preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $this->owner->VideoURL, $matches)) {
-			return $matches[0];
+		$url = $this->owner->VideoURL;
+		if (preg_match('/youtube\.com\/watch\?v=([^\&\?\/]+)/', $url, $id)) {
+			return $id[1];
+		} else if (preg_match('/youtube\.com\/embed\/([^\&\?\/]+)/', $url, $id)) {
+			return $id[1];
+		} else if (preg_match('/youtube\.com\/v\/([^\&\?\/]+)/', $url, $id)) {
+			return $id[1];
+		} else if (preg_match('/youtu\.be\/([^\&\?\/]+)/', $url, $id)) {
+			return $id[1];
+		} else if (preg_match('/youtube\.com\/verify_age\?next_url=\/watch%3Fv%3D([^\&\?\/]+)/', $url, $id)) {
+			return $id[1];
 		} else {
+			// not an youtube video
 			return '';
 		}
 	}
