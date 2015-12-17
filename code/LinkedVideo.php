@@ -13,15 +13,16 @@
  */
 class LinkedVideo extends DataObject
 {
-	private static $db = array(
-		'Title'     => 'Varchar(255)',
-	);
+    private static $db = array(
+        'Title'     => 'Varchar(255)',
+    );
 
-	private static $extensions = array('LinksToVideo');
+    private static $extensions = array('LinksToVideo');
 
-	public function getCMSFields() {
-		$fields = new FieldList($this->getCMSFieldsForVideo());
-		$fields->unshift(new TextField('Title', 'Title/Label (optional)'));
-		return $fields;
-	}
+    public function getCMSFields()
+    {
+        $fields = new FieldList($this->getCMSFieldsForVideo());
+        $fields->unshift(new TextField('Title', 'Title/Label (optional)'));
+        return $fields;
+    }
 }
