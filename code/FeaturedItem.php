@@ -16,6 +16,7 @@ class FeaturedItem extends DataObject
         'LinkType'      => "Enum('internal,external,video','internal')",
         'ExternalLink'  => 'Varchar(255)',
         'Sort'          => 'Int',
+        'OpensInNewTab' => 'Boolean',
     );
 
     private static $has_one = array(
@@ -52,6 +53,7 @@ class FeaturedItem extends DataObject
             TreeDropdownField::create('InternalLinkID', 'Link to Page/Product', 'SiteTree', 'ID', 'MenuTitle'),
             TextField::create('ExternalLink', 'Link to URL'),
             CompositeField::create($this->getCMSFieldsForVideo()),
+            CheckboxField::create('OpensInNewTab','Open link in new tab?'),
         ));
     }
 
@@ -73,5 +75,9 @@ class FeaturedItem extends DataObject
     public function Link()
     {
         return $this->getLink();
+    }
+
+    public function getTarget(){
+        return $this->OpensInNewTab ? 'target="_blank"' : '';
     }
 }
