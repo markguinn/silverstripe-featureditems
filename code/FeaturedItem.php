@@ -78,6 +78,6 @@ class FeaturedItem extends DataObject
     }
 
     public function getTarget(){
-        return $this->OpensInNewTab ? 'targe"_blank"' : '';
+        return $this->OpensInNewTab ? 'target="_blank"' : '';
     }
 }
